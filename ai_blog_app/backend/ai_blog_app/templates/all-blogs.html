@@ -17,7 +17,9 @@
         <h1 class="text-3xl font-bold">AI Blog Generator</h1>
       </div>
       <div>
-        <a href="#" class="tetx-white hover:underline">Logout</a>
+        <a href="/home" class="text-white hover:underline">Home</a>
+        <a href="/blog-list" class="tetx-white hover:underline mx-4">Saved Blog Posts</a>
+        <a href="/logout" class="tetx-white hover:underline">Logout</a>
       </div>
     </nav>
     <!-- Main Content Container -->
@@ -27,24 +29,16 @@
         <section>
           <h2 class="text-xl mb-4 font-semibold">All Blog Posts</h2>
           <div class="space-y-4">
-            <div class="border border-gray-300 p-4 rounded-lg">
-              <h3 class="text-lg font-semibold">Blog Post Title 1</h3>
-              <p>
-                This is the content of the blog post. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Excepturi, deleniti iste magni
-                distinctio assumenda corrupti ratione accusantium ad commodi eum
-                ut quo enim nemo amet. Tempore eligendi dolores at nemo?
-              </p>
-            </div>
-            <div class="border border-gray-300 p-4 rounded-lg">
-              <h3 class="text-lg font-semibold">Blog Post Title 2</h3>
-              <p>
-                This is the content of the blog post. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Excepturi, deleniti iste magni
-                distinctio assumenda corrupti ratione accusantium ad commodi eum
-                ut quo enim nemo amet. Tempore eligendi dolores at nemo?
-              </p>
-            </div>
+            {% for article in blog_articles reversed %}
+            <a href="blog-details/{{article.id}}">
+              <div class="border border-gray-300 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">{{article.youtube_title}}</h3>
+                <p>
+                  {{article.generated_content | truncatechars:15}}
+                </p>
+              </div>
+            </a>
+            {% endfor %}
             <!-- Repeat  -->
           </div>
         </section>
